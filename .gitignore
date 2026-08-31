@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+.DS_Store
+
+# server runtime data
+server/data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+.env
