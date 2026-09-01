@@ -31,7 +31,30 @@ Handover/Takeover Log, Defects & Maintenance, Driver Certification).
   `pdfkit` for PDF generation.
 - **Client**: React (Vite), React Router. No UI framework — plain CSS.
 
-## Getting started
+## Getting started (one command)
+
+Requires [Node.js](https://nodejs.org) 18+.
+
+```bash
+./start.sh        # macOS / Linux
+start.bat         # Windows (double-click, or run from a terminal)
+```
+
+This installs dependencies on first run, seeds the database, builds the
+client and starts the server — open **http://localhost:4000**. Run the same
+command again any time to relaunch (it skips reinstalling once
+`node_modules` already exists, and only rebuilds the client).
+
+### Default accounts (change these passwords after first login)
+
+| Role     | Username   | Password        |
+|----------|------------|-----------------|
+| Admin    | `admin`    | `Admin@123`     |
+| Operator | `operator` | `Operator@123`  |
+
+### Manual setup
+
+If you'd rather run each step yourself instead of `start.sh`:
 
 ```bash
 # 1. Install and seed the server (creates server/data/buggy_tracking.db)
@@ -48,15 +71,6 @@ npm run build
 cd ../server
 npm start
 ```
-
-Open http://localhost:4000.
-
-### Default accounts (change these passwords after first login)
-
-| Role     | Username   | Password        |
-|----------|------------|-----------------|
-| Admin    | `admin`    | `Admin@123`     |
-| Operator | `operator` | `Operator@123`  |
 
 ### Development mode (hot reload)
 
