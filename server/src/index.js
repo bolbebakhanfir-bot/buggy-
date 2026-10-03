@@ -52,4 +52,12 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Meryal Buggy Tracking System API listening on port ${PORT}`);
+  console.log(`  This computer:   http://localhost:${PORT}`);
+  // Print this machine's network addresses so other staff (e.g. the safety
+  // officer) on the same Wi-Fi / LAN know which URL to open.
+  for (const addrs of Object.values(require('os').networkInterfaces())) {
+    for (const a of addrs || []) {
+      if (a.family === 'IPv4' && !a.internal) console.log(`  Other computers: http://${a.address}:${PORT}`);
+    }
+  }
 });

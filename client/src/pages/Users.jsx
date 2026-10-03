@@ -20,6 +20,43 @@ function emptyPerms(modules) {
   return p;
 }
 
+// One-click starting points for common job roles. The admin can still tick
+// or untick individual boxes afterwards.
+const PRESETS = {
+  'Safety Officer': (modules) => {
+    const p = emptyPerms(modules);
+    for (const m of modules) p[m].view = true;
+    for (const m of ['checklist', 'usage', 'handover', 'defects', 'drivers']) {
+      if (p[m]) p[m] = { view: true, add: true, edit: true, delete: false };
+    }
+    return p;
+  },
+  'Buggy Operator': (modules) => {
+    const p = emptyPerms(modules);
+    for (const m of modules) if (m !== 'reports') p[m].view = true;
+    for (const m of ['checklist', 'usage', 'handover', 'defects']) if (p[m]) p[m].add = true;
+    return p;
+  },
+  'View only': (modules) => {
+    const p = emptyPerms(modules);
+    for (const m of modules) p[m].view = true;
+    return p;
+  },
+};
+
+function PresetButtons({ modules, onApply }) {
+  return (
+    <div className="preset-buttons">
+      <span>Quick presets:</span>
+      {Object.entries(PRESETS).map(([name, build]) => (
+        <button key={name} type="button" className="btn" onClick={() => onApply(build(modules))}>
+          {name}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function PermissionsEditor({ modules, permissions, onChange }) {
   return (
     <table className="perm-table">
@@ -111,6 +148,7 @@ function CreateUserForm({ modules, onCreated }) {
       {role === 'operator' && (
         <>
           <h3>Operator Permissions</h3>
+          <PresetButtons modules={modules} onApply={setPermissions} />
           <PermissionsEditor modules={modules} permissions={permissions} onChange={setPermissions} />
         </>
       )}
@@ -180,6 +218,7 @@ function UserRow({ user, modules, onUpdate, onDelete }) {
       {error && <div className="alert alert-error">{error}</div>}
       {editingPerms && (
         <div className="perm-editor">
+          <PresetButtons modules={modules} onApply={setPermissions} />
           <PermissionsEditor modules={modules} permissions={permissions} onChange={setPermissions} />
           <button className="btn btn-primary btn-small" onClick={savePerms}>Save Permissions</button>
         </div>

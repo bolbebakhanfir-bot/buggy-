@@ -52,6 +52,20 @@ command again any time to relaunch (it skips reinstalling once
 | Admin    | `admin`    | `Admin@123`     |
 | Operator | `operator` | `Operator@123`  |
 
+### Giving the Safety Officer access
+
+1. Log in as `admin` → **Admin: Users & Permissions** → **Create Account**.
+2. Enter the safety officer's username, password and full name, keep the role
+   as **Operator**, and click the **Safety Officer** quick preset. It gives:
+   view everything, add + edit Daily Checklist, Usage Log, Handover, Defects
+   and Driver Certification, download the daily PDF report, but no deleting
+   and no changes to the Fleet Register or Maintenance plan. You can still
+   tick or untick any box before saving.
+3. Send them the **"Other computers"** address the server prints on start-up
+   (e.g. `http://192.168.1.25:4000`). It works from any PC, tablet or phone
+   on the same Wi-Fi/network. If it doesn't open, allow port 4000 through the
+   Windows Firewall on the computer running the app.
+
 ### Manual setup
 
 If you'd rather run each step yourself instead of `start.sh`:

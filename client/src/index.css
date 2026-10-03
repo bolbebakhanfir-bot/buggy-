@@ -221,6 +221,7 @@ button, input, select, textarea { font-family: inherit; font-size: 14px; }
 .muted { color: var(--text-muted); font-size: 12.5px; margin-left: 4px; }
 .user-card-actions { display: flex; gap: 4px; }
 .perm-editor { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.preset-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 12px; font-size: 12.5px; }
 .perm-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 12px; }
 .perm-table th, .perm-table td { padding: 6px 10px; text-align: center; border-bottom: 1px solid var(--border); }
 .perm-table th:first-child, .perm-table td:first-child { text-align: left; }
